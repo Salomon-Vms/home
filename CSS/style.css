@@ -1,0 +1,19 @@
+
+    .back{
+        height: 100%;
+        width: 100%;
+        position: center; 
+        background-repeat: repeat; 
+        size: cover; 
+        align-items: center;
+        display: flex;
+    
+    }
+    div>ul>li>a:hover{
+        color: red;
+        transform: scale(1.1);
+    }
+    .inscription:hover{
+        background-color: brown;
+        border-radius: 15px;
+    }
