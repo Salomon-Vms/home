@@ -1,0 +1,102 @@
+// Créer un élément canvas
+var canvas = document.createElement("canvas");
+// Obtenir le contexte 2D du canvas
+var ctx = canvas.getContext("2d");
+// Définir la largeur et la hauteur du canvas
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+// Ajouter le canvas au document
+document.body.appendChild(canvas);
+
+// Créer un tableau pour stocker les fleurs
+var flowers = [];
+// Définir le nombre de fleurs à créer
+var flowerCount = 100;
+// Définir la vitesse de chute des fleurs
+var speed = 2;
+// Définir la gravité qui affecte les fleurs
+var gravity = 0.1;
+// Définir le vent qui affecte les fleurs
+var wind = 0.05;
+
+// Charger l'image de la fleur
+var flowerImage = new Image();
+flowerImage.src = "flower.png";
+
+// Fonction qui crée une fleur avec des propriétés aléatoires
+function createFlower() {
+  // Créer un objet fleur
+  var flower = {};
+  // Définir la position initiale de la fleur
+  flower.x = Math.random() * canvas.width;
+  flower.y = -50;
+  // Définir la taille de la fleur
+  flower.size = Math.random() * 20 + 10;
+  // Définir la vitesse horizontale et verticale de la fleur
+  flower.vx = Math.random() * speed - speed / 2;
+  flower.vy = Math.random() * speed + speed / 2;
+  // Définir l'angle et la vitesse angulaire de la fleur
+  flower.angle = Math.random() * Math.PI * 2;
+  flower.angularSpeed = Math.random() * 0.1 - 0.05;
+  // Ajouter la fleur au tableau des fleurs
+  flowers.push(flower);
+}
+
+// Fonction qui met à jour les propriétés des fleurs
+function updateFlowers() {
+  // Parcourir le tableau des fleurs
+  for (var i = 0; i < flowers.length; i++) {
+    // Récupérer la fleur courante
+    var flower = flowers[i];
+    // Mettre à jour la position de la fleur en fonction de sa vitesse et du vent
+    flower.x += flower.vx + wind;
+    flower.y += flower.vy;
+    // Mettre à jour l'angle de la fleur en fonction de sa vitesse angulaire
+    flower.angle += flower.angularSpeed;
+    // Appliquer la gravité à la vitesse verticale de la fleur
+    flower.vy += gravity;
+    // Si la fleur sort du canvas, la supprimer du tableau des fleurs
+    if (flower.x < -50 || flower.x > canvas.width + 50 || flower.y > canvas.height + 50) {
+      flowers.splice(i, 1);
+      i--;
+    }
+  }
+}
+
+// Fonction qui dessine les fleurs sur le canvas
+function drawFlowers() {
+  // Effacer le canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Parcourir le tableau des fleurs
+  for (var i = 0; i < flowers.length; i++) {
+    // Récupérer la fleur courante
+    var flower = flowers[i];
+    // Sauvegarder le contexte du canvas
+    ctx.save();
+    // Translater le contexte du canvas à la position de la fleur
+    ctx.translate(flower.x, flower.y);
+    // Tourner le contexte du canvas selon l'angle de la fleur
+    ctx.rotate(flower.angle);
+    // Dessiner l'image de la fleur sur le contexte du canvas avec la taille de la fleur
+    ctx.drawImage(flowerImage, -flower.size / 2, -flower.size / 2, flower.size, flower.size);
+    // Restaurer le contexte du canvas
+    ctx.restore();
+  }
+}
+
+// Fonction qui anime les fleurs en appelant les fonctions précédentes à chaque frame
+function animateFlowers() {
+  // Créer des nouvelles fleurs jusqu'à atteindre le nombre défini
+  while (flowers.length < flowerCount) {
+    createFlower();
+  }
+  // Mettre à jour les propriétés des fleurs existantes
+  updateFlowers();
+  // Dessiner les fleurs sur le canvas
+  drawFlowers();
+  // Demander au navigateur d'appeler cette fonction à nouveau au prochain frame
+  requestAnimationFrame(animateFlowers);
+}
+
+// Lancer l'animation des fleurs
+animateFlowers();
