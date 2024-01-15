@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"class="h-100" data-bs-theme="auto">
+<html lang="fr" class="h-100" data-bs-theme="auto">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -11,15 +11,29 @@
     <title>Home</title>  
 </head>
 <body class="d-flex h-100 text-center text-bg-dark">
-  
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <main class="px-3">
             <br><br>
-          <div class="bienvenu-image">
-            <h1>BIENVENUE SUR <br> <abbr><span style="color: red;">Tech</span></abbr>-<pans style="color: red;">D</pans>igit</h1>
-            <p><b>Parcour commence ici</b> </p>
-            <span class="bi bi-arrow-down"></span>
-          </div>
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/welcome.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/contact.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/welcome_notions.jpg" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           <p class="lead" style="text-align: justify;">Nous sommes ravis de vous accueillir dans notre communauté de passionnés de la technologie.<br>
             Si vous êtes débutants, vous allez  trouvez ici tout ce dont vous avez besoin pour apprendre et progresser dans le monde de l'informatique.<br>
             Nous vous offrons des cours en ligne de qualité, des tutoriels pratiques, des articles du blog et des outils gratuits pour faciliter votre apprentissage.<br><br>
@@ -28,7 +42,6 @@
           <p class="lead">
             <a href="NosServices.html" class="btn btn-outline-light btn-lg fw-bold border-white ">Commencez l'Apprentissage<span class="bi bi-arrow-right"></span></a>
           </p>
-        </main>
       
         <footer class="mt-auto text-white-50">
           <p>Copyright &copy;<a href="#" class="text-white">Salomon VMS</a><br>
